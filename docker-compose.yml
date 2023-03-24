@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db-mongo:
-    container_name: container-mongo
+    container_name: container-myamongo
     image: mongo
     restart: always
     environment:
@@ -14,14 +14,11 @@ services:
     expose:
       - 27017
     volumes:
-      - my-modata:/data/db
-      - my-modataconfig:/data/configdb
+      - myamangodata:/data/db
+      - myamangodataconfig:/data/configdb
 
 volumes:
-  my-modata:
-    driver: local
-    name: mymodata
-  my-modataconfig:
-    driver: local
+  myamangodata:
+  myamangodataconfig:
 
 

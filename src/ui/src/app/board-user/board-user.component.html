@@ -1,0 +1,73 @@
+
+<h4 class="currency-converter"> Currency Converter</h4>
+
+<div class="main">
+
+<form (ngSubmit) = "convert()">
+    
+    <div class="form-group">
+        <label for="date"> Date : </label>
+        <input  [(ngModel)] = "curWrapper.date" name = "date" type="date" class="form-control searchBox" placeholder="date">
+        
+        <label for="amount"> Amount to Convert : </label>
+        <input [(ngModel)] = "curWrapper.amount" type="text" class="form-control searchBox"
+           name = "amount">
+    </div>
+    
+    
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">From</span>
+                </div>
+                <select class="form-control from" [(ngModel)]="curWrapper.from" name="from">
+                    <option value="">Select One …</option>
+                    <option value="CAD">CAD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="JPY">JPY</option>
+                    <option value="TRY">TRY</option>
+                    <option value="USD">USD</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">To</span>
+                </div>
+                <select class="form-control to" [(ngModel)]="curWrapper.to" name="to">
+                    <option value="">Select One …</option>
+                    <option value="CAD">CAD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="JPY">JPY</option>
+                    <option value="TRY">TRY</option>
+                    <option value="USD">USD</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Display the converted amount -->
+    <div class="col-sm-6">
+    <h4>Converted: <span style="color:rgb(72, 255, 0);"> {{ result }} </span>
+    </h4> 
+</div>
+
+    <div class="text-center">
+        
+        <!-- convert button -->
+        <button class="btn btn-primary m-2" type ="submit" >Convert</button>
+        
+        <!-- reset button -->
+        <button class="btn btn-primary m-2" (click)="reset()">Reset</button>
+   
+    </div>
+    
+    
+
+</form>
+</div>

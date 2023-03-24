@@ -1,0 +1,19 @@
+<div class="container" *ngIf="curUser; else loggedOut">
+    <div class="profile">
+        <h3>My Profile: <strong>{{ curUser.username }}</strong> </h3>
+        <img src="../../assets/images/avatar-man1.png" alt="Avatar"
+            class="avatar-profile">
+    </div>
+    <button class="update" routerLink="/update-profile">Update</button>
+    <p></p>
+    <div>
+        <p><strong>First Name: </strong>{{ curUser.firstName }}</p>
+        <p><strong>Last Name: </strong>{{ curUser.lastName }}</p>
+        <p><strong>Username: </strong>{{ curUser.username }}</p>
+        <p><strong>Email: </strong>{{ curUser.email }}</p>
+        <p><strong>User Type: </strong>{{ curUser.role }}</p>
+    </div>
+
+</div>
+
+<ng-template #loggedOut> Please login. </ng-template>

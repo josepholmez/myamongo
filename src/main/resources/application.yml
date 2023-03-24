@@ -1,0 +1,6 @@
+#application.yml - MongoDB
+spring:
+  datasource:
+    url: mongodb://localhost:3000/myamango
+    username: root
+    password: 1234

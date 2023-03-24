@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db-mongo:
+    container_name: container-mongo
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+    ports:
+        #host:container
+       - 3000:27017
+    expose:
+      - 27017
+    volumes:
+      - my-modata:/data/db
+      - my-modataconfig:/data/configdb
+
+volumes:
+  my-modata:
+    driver: local
+    name: mymodata
+  my-modataconfig:
+    driver: local
+
+

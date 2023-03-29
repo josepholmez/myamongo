@@ -19,7 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository empRepository;
 
     @Override
-    public Long addEmployee(Employee emp) {
+    public String addEmployee(Employee emp) {
         if (emp == null) {
             return null;
         }
@@ -33,12 +33,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee getEmployeeById(Long empId) {
+    public Employee getEmployeeById(String empId) {
         return (empId != null) ? empRepository.getById(empId) : null;
     }
 
     @Override
-    public Long updateEmployee(Employee givenEmp) {
+    public String updateEmployee(Employee givenEmp) {
         if ((givenEmp == null) || (givenEmp.getId() == null)) {
             return null;
         }
@@ -50,7 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Long updateEmployee(Long id, Employee givenEmp) {
+    public String updateEmployee(String id, Employee givenEmp) {
         if ((id == null) || (givenEmp == null)) {
             return null;
         }
@@ -72,7 +72,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public boolean deleteEmployeeById(Long empId) {
+    public boolean deleteEmployeeById(String empId) {
         Employee existing = getEmployeeById(empId);
         if (existing == null) {
             return false;

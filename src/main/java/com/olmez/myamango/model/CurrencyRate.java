@@ -10,13 +10,11 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.olmez.myamango.currency.parser.DoubleDeserializer;
 import com.olmez.myamango.model.enums.CurrencyCode;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Document
-@Getter
-@Setter
+@Document(collection = "currency_rate")
+@Data
 @NoArgsConstructor
 public class CurrencyRate extends BaseObject {
 

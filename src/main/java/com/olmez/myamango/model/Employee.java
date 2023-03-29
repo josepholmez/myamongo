@@ -5,13 +5,11 @@ import java.util.Objects;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Document
-@Getter
-@Setter
+@Document(collection = "employee")
+@Data
 @NoArgsConstructor
 public class Employee extends BaseObject {
 

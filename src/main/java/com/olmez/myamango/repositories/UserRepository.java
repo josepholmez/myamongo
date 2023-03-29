@@ -42,16 +42,26 @@ public interface UserRepository extends BaseObjectRepository<User> {
         return users.get(0);
     }
 
-    default List<User> sortByNameASC() {
+    /**
+     * It allows sorting ASCENDING
+     * 
+     * @return sorted list
+     */
+    default List<User> sortByName() {
         Sort sort = Sort.by("firstName")
                 .and(Sort.by("lastName"));
-        return findAll(sort);
+        return findAllActiveSort(sort);
     }
 
+    /**
+     * It allows sorting DESCENDING
+     * 
+     * @return
+     */
     default List<User> sortByNameDESC() {
         Sort sort = Sort.by(Sort.Direction.DESC, "firstName")
                 .and(Sort.by(Sort.Direction.DESC, "lastName"));
-        return findAll(sort);
+        return findAllActiveSort(sort);
     }
 
 }

@@ -7,20 +7,20 @@ import com.olmez.myamango.model.Employee;
 public interface EmployeeService {
 
     // Create
-    Long addEmployee(Employee emp);
+    String addEmployee(Employee emp);
 
     // Read-I
     List<Employee> getAllEmployees();
 
     // Read-II
-    Employee getEmployeeById(Long empId);
+    Employee getEmployeeById(String empId);
 
     // Update-I
-    Long updateEmployee(Employee givenEmp);
+    String updateEmployee(Employee givenEmp);
 
     // Update-II
-    Long updateEmployee(Long existingEmpId, Employee givenEmp);
+    String updateEmployee(String existingEmpId, Employee givenEmp);
 
     // Delete
-    boolean deleteEmployeeById(Long empId);
+    boolean deleteEmployeeById(String empId);
 }

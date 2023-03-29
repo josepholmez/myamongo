@@ -3,36 +3,21 @@ package com.olmez.myamango.repositories;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import com.olmez.myamango.model.BaseObject;
-import com.olmez.myamango.utility.IdGen;
 
 @NoRepositoryBean
-public interface BaseObjectRepository<T extends BaseObject> extends MongoRepository<T, Long> {
+public interface BaseObjectRepository<T extends BaseObject> extends MongoRepository<T, String> {
 
-    @Override
-    @Query("{ 'deleted' : { $ne : true }}") // $ne = not equals
-    List<T> findAll();
+    @Query("{ 'deleted' : false}") // @Query("{ 'deleted' : { $ne : true }}")
+    List<T> findAllActive();
 
-    @Query("{ 'deleted' : false }")
-    long countAll();
-
-    /**
-     * It sets custom id to the object
-     * 
-     * @param obj
-     * @return
-     */
-    default T save(T obj) {
-        if (obj != null && obj.getId() == null) {
-            obj.setId(createId());
-            save(obj);
-        }
-        return obj;
-    }
+    @Query("{ 'deleted' : false}") // @Query("{ 'deleted' : { $ne : true }}")
+    List<T> findAllActiveSort(Sort sort);
 
     /**
      * It sets 1 to deleted field instead of delete from database
@@ -54,7 +39,7 @@ public interface BaseObjectRepository<T extends BaseObject> extends MongoReposit
         saveAll(collections);
     }
 
-    default T getById(Long id) {
+    default T getById(String id) {
         if (id == null) {
             return null;
         }
@@ -66,16 +51,6 @@ public interface BaseObjectRepository<T extends BaseObject> extends MongoReposit
 
         T baseObject = obj.get();
         return baseObject.isDeleted() ? null : baseObject;
-    }
-
-    default Long createId() {
-        List<T> list = findAll();
-        Long id = IdGen.genLong();
-        if (list.isEmpty()) {
-            return id;
-        }
-        boolean res = list.stream().anyMatch(obj -> !obj.getId().equals(id));
-        return res ? id : createId();
     }
 
 }

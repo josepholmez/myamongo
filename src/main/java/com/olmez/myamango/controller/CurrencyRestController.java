@@ -42,7 +42,7 @@ public class CurrencyRestController {
 
     // UPDATE
     @PutMapping("/{id}")
-    public ResponseEntity<CurrencyRate> updateCurrencyRate(@PathVariable Long id,
+    public ResponseEntity<CurrencyRate> updateCurrencyRate(@PathVariable String id,
             @RequestBody CurrencyRate rateDetails) {
         CurrencyRate updatedRate = service.updateCurrencyRate(id, rateDetails);
         return ResponseEntity.ok(updatedRate);
@@ -50,7 +50,7 @@ public class CurrencyRestController {
 
     // DELETE
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteCurrencyRate(@PathVariable Long id) {
+    public ResponseEntity<Boolean> deleteCurrencyRate(@PathVariable String id) {
         Boolean result = service.deleteCurrencyRate(id);
         return ResponseEntity.ok(result);
     }
@@ -65,7 +65,7 @@ public class CurrencyRestController {
 
     // GET By Id
     @GetMapping("/{id}")
-    public ResponseEntity<CurrencyRate> getRateById(@PathVariable Long id) {
+    public ResponseEntity<CurrencyRate> getRateById(@PathVariable String id) {
         CurrencyRate rate = service.findCurrencyRateById(id);
         return ResponseEntity.ok(rate);
     }

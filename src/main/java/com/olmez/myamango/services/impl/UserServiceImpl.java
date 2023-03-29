@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User getUserById(Long userId) {
+    public User getUserById(String userId) {
         if (userId == null) {
             return null;
         }
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public boolean deleteUser(Long userId) {
+    public boolean deleteUser(String userId) {
         User existing = getUserById(userId);
         if (existing == null) {
             return false;
@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User updateUser(Long id, User givenUser) {
+    public User updateUser(String id, User givenUser) {
         User existing = getUserById(id);
         if (existing == null || givenUser == null) {
             return null;

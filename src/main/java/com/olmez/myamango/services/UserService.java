@@ -11,11 +11,11 @@ public interface UserService {
 
     boolean addUser(User user);
 
-    User getUserById(Long id);
+    User getUserById(String id);
 
-    boolean deleteUser(Long id);
+    boolean deleteUser(String id);
 
-    User updateUser(Long existingUserId, User givenUser);
+    User updateUser(String existingUserId, User givenUser);
 
     User getUserByUsername(String username);
 

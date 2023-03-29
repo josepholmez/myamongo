@@ -2,25 +2,20 @@ package com.olmez.myamango.model;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators.PropertyGenerator;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @MappedSuperclass
-@Getter
-@Setter
-@JsonIdentityInfo(generator = PropertyGenerator.class, property = "id")
+@Data
 public class BaseObject implements Serializable, Comparable<BaseObject> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long id;
+    @Field("_id")
+    protected String id = new ObjectId().toString();
     protected boolean deleted = false;
 
     public boolean isDeleted() {

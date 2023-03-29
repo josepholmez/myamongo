@@ -45,14 +45,14 @@ public class UserRestController {
 
     // GET By Id using @PathVariable
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserByIdPath(@PathVariable Long id) {
+    public ResponseEntity<User> getUserByIdPath(@PathVariable String id) {
         User user = userService.getUserById(id);
         return ResponseEntity.ok(user);
     }
 
     // UPDATE
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User user) {
         User updated = userService.updateUser(id, user);
         return ResponseEntity.ok(updated);
     }
@@ -69,7 +69,7 @@ public class UserRestController {
 
     // DELETE using @PathVariable
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteUserById(@PathVariable Long id) {
+    public ResponseEntity<Boolean> deleteUserById(@PathVariable String id) {
         boolean res = userService.deleteUser(id);
         return ResponseEntity.ok(res);
     }

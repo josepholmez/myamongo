@@ -34,4 +34,7 @@ public interface CurrencyRateRepository extends BaseObjectRepository<CurrencyRat
         return rates.get(0);
     }
 
+    @Query("{ 'date' : {$in: ?0}, 'deleted' : false }")
+    List<CurrencyRate> findRatesByDates(List<LocalDate> dates);
+
 }

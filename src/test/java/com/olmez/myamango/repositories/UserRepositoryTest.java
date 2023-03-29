@@ -27,16 +27,30 @@ class UserRepositoryTest {
     @Autowired
     private TestRepoCleanerService cleanerService;
 
-    private User user = new User("First", "Last", "uname", "email");
-    private User user2 = new User("First2", "Last2", "uname2", "email2");
+    private User user = new User("Joe", "Olmez", "joeo", "joe@email.com");
+    private User user2 = new User("Terry", "Brown", "terryb", "terry@email.com");
+    private User deletedUser = new User("DeletedFirst", "DeletedLast", "deletedf", "deletedf@email.com");
 
     @BeforeEach
     public void setup() {
         cleanerService.clear();
+        deletedUser.setDeleted(true);
+        repository.save(deletedUser);
     }
 
     @Test
-    void testFindByUsername() {
+    void testFindAllActive() {
+        // arrange
+        user = repository.save(user);
+        // act
+        var users = repository.findAllActive();
+        // assert
+        assertThat(users).hasSize(1).doesNotContain(deletedUser);
+        assertThat(users.get(0)).isEqualTo(user);
+    }
+
+    @Test
+    void testFindUsersByUsername() {
         // arrange
         user = repository.save(user);
 
@@ -46,6 +60,7 @@ class UserRepositoryTest {
         // assert
         assertThat(users).hasSize(1);
         assertThat(users.get(0)).isEqualTo(user);
+        assertThat(users).doesNotContain(deletedUser);
     }
 
     @Test
@@ -59,6 +74,44 @@ class UserRepositoryTest {
 
         // assert
         assertThat(user).isNotNull().isEqualTo(resUser);
+    }
+
+    @Test
+    void testSortByName() {
+        // arrange
+        user = repository.save(user);
+        user2 = repository.save(user2);
+        var user3 = new User("Alex", "Yellow", "uname3", "email3");
+        user3 = repository.save(user3);
+
+        // act
+        var sortedList = repository.sortByName();
+
+        // assert
+        assertThat(sortedList).hasSize(3).doesNotContain(deletedUser);
+
+        assertThat(sortedList.get(0)).isEqualTo(user3); // Alex
+        assertThat(sortedList.get(1)).isEqualTo(user); // Joe
+        assertThat(sortedList.get(2)).isEqualTo(user2); // Terry
+    }
+
+    @Test
+    void testSortByNameDESC() {
+        // arrange
+        user = repository.save(user);
+        user2 = repository.save(user2);
+        var user3 = new User("Alex", "Yellow", "uname3", "email3");
+        user3 = repository.save(user3);
+
+        // act
+        var sortedList = repository.sortByNameDESC();
+
+        // assert
+        assertThat(sortedList).hasSize(3).doesNotContain(deletedUser);
+
+        assertThat(sortedList.get(0)).isEqualTo(user2); // Terry
+        assertThat(sortedList.get(1)).isEqualTo(user); // Joe
+        assertThat(sortedList.get(2)).isEqualTo(user3); // Alex
     }
 
 }

@@ -97,7 +97,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
-    public CurrencyRate findCurrencyRateById(Long id) {
+    public CurrencyRate findCurrencyRateById(String id) {
         if (id == null) {
             return null;
         }
@@ -105,7 +105,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
-    public boolean deleteCurrencyRate(Long ciId) {
+    public boolean deleteCurrencyRate(String ciId) {
         CurrencyRate existing = findCurrencyRateById(ciId);
         if (existing == null) {
             return false;
@@ -115,7 +115,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     @Override
-    public CurrencyRate updateCurrencyRate(Long id, CurrencyRate rateDetails) {
+    public CurrencyRate updateCurrencyRate(String id, CurrencyRate rateDetails) {
         CurrencyRate existing = findCurrencyRateById(id);
         if (existing == null) {
             return null;

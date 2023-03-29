@@ -27,7 +27,7 @@ public class EmployeeRestController {
 
     // POST
     @PostMapping("/add")
-    public Long addEmployee(@RequestBody Employee employee) {
+    public String addEmployee(@RequestBody Employee employee) {
         return empService.addEmployee(employee);
     }
 
@@ -39,25 +39,25 @@ public class EmployeeRestController {
 
     // PUT
     @PutMapping("/update/{id}")
-    public Long updateEmployee(@PathVariable("id") Long id, @RequestBody Employee model) {
+    public String updateEmployee(@PathVariable("id") String id, @RequestBody Employee model) {
         return empService.updateEmployee(id, model);
     }
 
     // DELETE
     @DeleteMapping("/delete/{id}")
-    public boolean deleteEmployeeById(@PathVariable("id") Long id) {
+    public boolean deleteEmployeeById(@PathVariable("id") String id) {
         return empService.deleteEmployeeById(id);
     }
 
     // Extra GET
     @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable("id") Long id) {
+    public Employee getEmployeeById(@PathVariable("id") String id) {
         return empService.getEmployeeById(id);
     }
 
     // Extra PUT
     @PutMapping("/update")
-    public Long updateEmployee(@RequestBody Employee model) {
+    public String updateEmployee(@RequestBody Employee model) {
         return empService.updateEmployee(model);
     }
 

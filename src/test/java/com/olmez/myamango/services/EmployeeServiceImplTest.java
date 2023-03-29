@@ -14,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.olmez.myamango.model.Employee;
-import com.olmez.myamango.model.mock.MockEmployee;
 import com.olmez.myamango.repositories.EmployeeRepository;
 import com.olmez.myamango.services.impl.EmployeeServiceImpl;
 
@@ -31,8 +30,10 @@ class EmployeeServiceImplTest {
 
     @BeforeEach
     public void setup() {
-        emp = new MockEmployee("Employee");
-        emp2 = new MockEmployee("Employee2");
+        emp = new Employee("Employee", "");
+        emp.setId("id1");
+        emp2 = new Employee("Employee2", "");
+        emp.setId("id2");
     }
 
     @Test
@@ -52,7 +53,8 @@ class EmployeeServiceImplTest {
         // arrange
         when(empRepository.getById(emp.getId())).thenReturn(emp);
         when(empRepository.save(any(Employee.class))).thenReturn(emp);
-        var newEmp = new MockEmployee("New Employee");
+        var newEmp = new Employee("New Employee", "");
+        newEmp.setId("id3");
         // act
         var updated = service.updateEmployee(emp.getId(), newEmp);
         // assert

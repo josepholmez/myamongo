@@ -20,11 +20,11 @@ public interface CurrencyService {
 
     boolean createCurrencyRate(CurrencyRate rate);
 
-    CurrencyRate findCurrencyRateById(Long id);
+    CurrencyRate findCurrencyRateById(String id);
 
-    CurrencyRate updateCurrencyRate(Long id, CurrencyRate rateDetails);
+    CurrencyRate updateCurrencyRate(String id, CurrencyRate rateDetails);
 
-    boolean deleteCurrencyRate(Long id);
+    boolean deleteCurrencyRate(String id);
 
     CurrencyRate findCurrencyRateByDate(LocalDate date);
 

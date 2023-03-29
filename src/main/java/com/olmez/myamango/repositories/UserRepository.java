@@ -3,6 +3,7 @@ package com.olmez.myamango.repositories;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -39,6 +40,18 @@ public interface UserRepository extends BaseObjectRepository<User> {
             saveAll(users);
         }
         return users.get(0);
+    }
+
+    default List<User> sortByNameASC() {
+        Sort sort = Sort.by("firstName")
+                .and(Sort.by("lastName"));
+        return findAll(sort);
+    }
+
+    default List<User> sortByNameDESC() {
+        Sort sort = Sort.by(Sort.Direction.DESC, "firstName")
+                .and(Sort.by(Sort.Direction.DESC, "lastName"));
+        return findAll(sort);
     }
 
 }

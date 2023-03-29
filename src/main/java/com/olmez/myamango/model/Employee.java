@@ -3,12 +3,13 @@ package com.olmez.myamango.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import jakarta.persistence.Entity;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Document
 @Getter
 @Setter
 @NoArgsConstructor

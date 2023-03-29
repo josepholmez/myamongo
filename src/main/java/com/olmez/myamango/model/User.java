@@ -2,16 +2,17 @@ package com.olmez.myamango.model;
 
 import java.util.Objects;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import com.olmez.myamango.model.enums.UserType;
 import com.olmez.myamango.utility.StringUtility;
 
-import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
-@Entity
+@Document(collection = "user")
 @Getter
 @Setter
 @NoArgsConstructor

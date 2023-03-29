@@ -1,6 +1,5 @@
 package com.olmez.myamango.repositories;
 
-import java.rmi.UnexpectedException;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,44 +8,50 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import com.olmez.myamango.model.BaseObject;
+import com.olmez.myamango.utility.IdGen;
 
 @NoRepositoryBean
 public interface BaseObjectRepository<T extends BaseObject> extends MongoRepository<T, Long> {
 
-    @Query("{ 'deleted' : false }")
+    @Override
+    @Query("{ 'deleted' : { $ne : true }}") // $ne = not equals
     List<T> findAll();
 
     @Query("{ 'deleted' : false }")
     long countAll();
 
     /**
+     * It sets custom id to the object
+     * 
+     * @param obj
+     * @return
+     */
+    default T save(T obj) {
+        if (obj != null && obj.getId() == null) {
+            obj.setId(createId());
+            save(obj);
+        }
+        return obj;
+    }
+
+    /**
      * It sets 1 to deleted field instead of delete from database
      * 
      * @param object
      */
-    default void deleted(T object) {
+    default boolean deleted(T object) {
+        if (object == null) {
+            return false;
+        }
         object.setDeleted(true);
         save(object);
+        return true;
+
     }
 
-    default void deletedAll(Iterable<T> entities) {
-        entities.forEach(obj -> obj.setDeleted(true));
-        saveAll(entities);
-    }
-
-    default T reload(T object) throws UnexpectedException {
-        if (object == null) {
-            return null;
-        }
-        if (object.getId() == null) {
-            return object;
-        }
-        Optional<T> obj = findById(object.getId());
-        if (!obj.isPresent()) {
-            throw new UnexpectedException(
-                    String.format("Failed reloading %s id =%d", object.getClass().getSimpleName(), object.getId()));
-        }
-        return obj.get();
+    default void deletedAll(Iterable<T> collections) {
+        collections.forEach(obj -> obj.setDeleted(true));
+        saveAll(collections);
     }
 
     default T getById(Long id) {
@@ -61,6 +66,16 @@ public interface BaseObjectRepository<T extends BaseObject> extends MongoReposit
 
         T baseObject = obj.get();
         return baseObject.isDeleted() ? null : baseObject;
+    }
+
+    default Long createId() {
+        List<T> list = findAll();
+        Long id = IdGen.genLong();
+        if (list.isEmpty()) {
+            return id;
+        }
+        boolean res = list.stream().anyMatch(obj -> !obj.getId().equals(id));
+        return res ? id : createId();
     }
 
 }

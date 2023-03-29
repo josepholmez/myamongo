@@ -1,6 +1,13 @@
+#For db on Cloud-MongoDB Atlass #################################################
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:3000/myamango
-      username: root
-      password: 1234
+      uri: mongodb+srv://root:1234@mydb.xd3hcfj.mongodb.net/myamango
+#################################################################################
+
+#LOCAL ###############################################
+# spring:                                            #
+#    data:                                           #
+#       mongodb:                                     #
+#         uri: mongodb://localhost:27017/myamongo    #
+######################################################

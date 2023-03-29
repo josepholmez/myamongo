@@ -3,18 +3,18 @@ package com.olmez.myamango.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.lang.Nullable;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.olmez.myamango.currency.parser.DoubleDeserializer;
 import com.olmez.myamango.model.enums.CurrencyCode;
 
-import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Document
 @Getter
 @Setter
 @NoArgsConstructor

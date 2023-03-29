@@ -7,7 +7,7 @@ import { SignupRequest } from '../model/signup.request';
 import { User } from '../model/user';
 import { environment } from './../../environments/environment';
 
-const AUTH_URL = environment.authUrl; // http://localhost:5000//api/auth
+const AUTH_URL = environment.authUrl; // http://localhost:5000/api/auth
 const BASE_URL = environment.apiServerUrl; // http://localhost:5000
 const USER_URL = BASE_URL + '/api/v1/users';
 const TOKEN_KEY = 'auth-token';

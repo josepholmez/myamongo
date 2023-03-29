@@ -28,14 +28,14 @@ public class AuthRestController {
     @PostMapping("/signup")
     public ResponseEntity<Boolean> signupUser(@RequestBody RegisterRequest request) {
         boolean res = authService.register(request);
-        return (res) ? new ResponseEntity<>(HttpStatus.CREATED) : ResponseEntity.badRequest().body(false);
+        return (res) ? new ResponseEntity<>(HttpStatus.CREATED) : ResponseEntity.badRequest().build();
     }
 
     @PostMapping("/signin")
     public ResponseEntity<AuthResponse> signin(@RequestBody AuthRequest request) throws UnexpectedException {
         AuthResponse res = authService.authenticate(request);
         return (!StringUtility.isEmpty(res.getToken())) ? ResponseEntity.ok(res)
-                : ResponseEntity.badRequest().body(null);
+                : ResponseEntity.badRequest().build();
     }
 
 }

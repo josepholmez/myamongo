@@ -6,8 +6,7 @@ import { User } from '../model/user';
 import { environment } from './../../environments/environment';
 import { AuthService } from './auth.service';
 
-const API_BASE_URL = environment.apiServerUrl; // http://localhost:5000
-const USER_URL = API_BASE_URL + '/api/v1/users';
+const USERS_URL = environment.usersUrl; // http://localhost:5000/api/v1/users
 
 @Injectable({
   providedIn: 'root',
@@ -20,40 +19,40 @@ export class UserService {
   }
 
   async getAdminBoard() {
-    return this.http.get(USER_URL, this.headerObj);
+    return this.http.get(USERS_URL, this.headerObj);
   }
 
   async getUserByUsername(username: string) {
-    let url = USER_URL + `'/username`;
+    let url = USERS_URL + `'/username`;
     let httpOptions = this.authService.addHeaderAndParam('username', username);
     return this.http.get(url, httpOptions);
   }
 
-  async getUserById(id: number): Promise<Observable<User>> {
-    let url = USER_URL + `/${id}`;
+  async getUserById(id: string): Promise<Observable<User>> {
+    let url = USERS_URL + `/${id}`;
     return this.http.get<User>(url, this.headerObj);
   }
 
   async updatePassword(passWrapper: PasswordWrapper) {
-    let url = USER_URL + `/pass`;
+    let url = USERS_URL + `/pass`;
     return this.http.put(url, passWrapper);
   }
 
   async getAllUsers(): Promise<Observable<User[]>> {
-    return this.http.get<User[]>(USER_URL, this.headerObj);
+    return this.http.get<User[]>(USERS_URL, this.headerObj);
   }
 
   async updateUser(user: User) {
-    return this.http.put(USER_URL, user, this.headerObj);
+    return this.http.put(USERS_URL, user, this.headerObj);
   }
 
-  async updateUserById(id: number, user: User): Promise<Observable<Object>> {
-    let url = USER_URL + `/${id}`;
+  async updateUserById(id: string, user: User): Promise<Observable<Object>> {
+    let url = USERS_URL + `/${id}`;
     return this.http.put(url, user, this.headerObj);
   }
 
   async deleteUser(user: User) {
-    let url = USER_URL + `/${user.id}`;
+    let url = USERS_URL + `/${user.id}`;
     return this.http.delete(url, this.headerObj);
   }
 }

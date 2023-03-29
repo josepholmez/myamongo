@@ -35,13 +35,13 @@ export class EmployeeService {
     return this.http.put(url, emp, this.headerObj);
   }
 
-  async getEmployeeById(id: number): Promise<Observable<Employee>> {
+  async getEmployeeById(id: string): Promise<Observable<Employee>> {
     let url = this.empURL + `/${id}`;
     console.log('Request url: ', url);
     return this.http.get<Employee>(url, this.headerObj);
   }
 
-  async deleteEmployee(id: number): Promise<Observable<Object>> {
+  async deleteEmployee(id: string): Promise<Observable<Object>> {
     let url = this.empURL + `/delete/${id}`;
     return this.http.delete(url, this.headerObj);
   }

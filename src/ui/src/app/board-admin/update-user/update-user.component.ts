@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./update-user.component.css'],
 })
 export class UpdateUserComponent implements OnInit {
-  id!: number;
+  id!: string;
   user = new User();
 
   constructor(

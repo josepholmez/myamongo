@@ -9,7 +9,7 @@ import { EmployeeService } from '../employee.service';
   styleUrls: ['./update-emp.component.css'],
 })
 export class UpdateEmpComponent implements OnInit {
-  id!: number;
+  id!: string;
   emp: Employee = new Employee();
 
   constructor(

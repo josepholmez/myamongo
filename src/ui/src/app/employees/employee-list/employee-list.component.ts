@@ -36,14 +36,14 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
-  async deleteEmp(id: number) {
+  async deleteEmp(id: string) {
     (await this.empService.deleteEmployee(id)).subscribe((data) => {
       console.log(data);
       this.getEmployeeList();
     });
   }
 
-  goToUpdateEmp(id: number) {
+  goToUpdateEmp(id: string) {
     this.router.navigate(['update-emp', id]);
   }
 

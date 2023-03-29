@@ -1,5 +1,5 @@
 export class CurrencyRate {
-  id!: number;
+  id: string;
   date!: Date;
   amount: number = 1.0;
   baseCode = Code.USD;

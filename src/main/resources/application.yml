@@ -1,0 +1,15 @@
+#For db on Cloud-MongoDB Atlass #################################################
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://root:1234@mydb.xd3hcfj.mongodb.net/myamango
+server:
+  port: 5000
+#################################################################################
+
+#LOCAL ###############################################
+# spring:                                            #
+#    data:                                           #
+#       mongodb:                                     #
+#         uri: mongodb://localhost:27017/myamongo    #
+######################################################

@@ -1,0 +1,49 @@
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration"
+          style="border-radius: 10px;">
+          <div class="card-body p-4 p-md-5">
+            <h4> Update Profile  </h4>
+            <!-- FORM-->
+            <form (ngSubmit) = "onSubmit()">
+
+              <div class="form-group">
+                <label> First Name</label>
+                <input type="text" class ="form-control" id = "firstName"
+                    [(ngModel)] = "user.firstName" name = "firstName">
+            </div>
+
+            <div class="form-group">
+              <label> Last Name</label>
+              <input type="text" class ="form-control" id = "lastName"
+                  [(ngModel)] = "user.lastName" name = "lastName">
+          </div>
+
+            <div class="form-group">
+              <label> Username</label>
+              <input type="text" class ="form-control" id = "username"
+                  [(ngModel)] = "user.username" name = "username">
+          </div>
+
+          <div class="form-group">
+            <label> Email</label>
+            <input type="text" class ="form-control" id = "email"
+                [(ngModel)] = "user.email" name = "email">
+        </div>
+
+        <button class = "btn btn-success" type ="submit">Update</button>
+        
+        &nbsp;&nbsp;<a href="/profile" (click)="onBack()" class="btn btn-secondary">Back</a>
+
+        &nbsp;&nbsp;<a href="/update-password" (click)="onUpdatePassword()" class="btn btn-danger">Update Password</a>
+        
+      </form>
+      
+    </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
